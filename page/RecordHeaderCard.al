@@ -19,6 +19,14 @@ page 50152 "Record Header Card"
                 field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    begin
+                        CurrencyExchangeRate.Reset();
+                        CurrencyExchangeRate.setRange("Currency Code", 'CAD');
+                        CurrencyExchangeRate.SetRange("Starting Date", Rec."Posting Date");
+                        if CurrencyExchangeRate.FindFirst() then
+                            ExchangeRate := CurrencyExchangeRate."Exchange Rate Amount";
+                    end;
                 }
                 field(Person; Rec.Person)
                 {
@@ -67,6 +75,11 @@ page 50152 "Record Header Card"
                                     Rec.AccountNumber := EmpRec."Phone No."
                             end;
                     end;
+                }
+                field(ExchangeRate; ExchangeRate)
+                {
+                    ApplicationArea = All;
+                    DecimalPlaces = 0 : 5;
                 }
 
             }
@@ -123,6 +136,6 @@ page 50152 "Record Header Card"
     }
 
     var
-
-
+        CurrencyExchangeRate: Record "Currency Exchange Rate";
+        ExchangeRate: Decimal;
 }

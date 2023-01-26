@@ -48,7 +48,6 @@ page 50158 "Posted Record Header Page"
                 {
                     ApplicationArea = All;
                 }
-
                 field(Delete; Rec.Delete)
                 {
                     ApplicationArea = All;
@@ -56,13 +55,11 @@ page 50158 "Posted Record Header Page"
                 field(AccountNumber; Rec.AccountNumber)
                 {
                     ApplicationArea = All;
-
                 }
                 field("No. of Ticket Bought"; Rec."No. of Ticket Bought")
                 {
                     ApplicationArea = All;
                     DrillDown = true;
-
                 }
 
             }
@@ -86,6 +83,8 @@ page 50158 "Posted Record Header Page"
 
         }
     }
+
+
 
 
 }

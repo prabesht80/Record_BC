@@ -30,6 +30,7 @@ report 50158 Bill
 
             }
 
+
             dataitem("Posted Record Line"; "Posted Record Line")
             {
                 DataItemLink = "Doc No." = field("No.");
@@ -56,6 +57,8 @@ report 50158 Bill
                 column(Total_Price; "Total Price") { }
 
             }
+
+
         }
     }
 

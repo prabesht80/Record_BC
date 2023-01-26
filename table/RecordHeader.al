@@ -1,6 +1,7 @@
 table 50150 "Record Header"
 {
     DataClassification = ToBeClassified;
+    // TableType = temporary;
 
     fields
     {
@@ -23,7 +24,7 @@ table 50150 "Record Header"
         field(2; "Posting Date"; Date)
         {
             DataClassification = ToBeClassified;
-            Editable = false;
+            // Editable = false;
         }
         field(9; Person; Option)
         {

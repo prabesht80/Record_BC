@@ -5,7 +5,7 @@ page 50153 "Record Header Page"
     UsageCategory = Administration;
     SourceTable = "Record Header";
     CardPageId = "Record Header Card";
-    Editable = false;
+    // Editable = false;
 
     layout
     {
@@ -20,6 +20,7 @@ page 50153 "Record Header Page"
                 field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = All;
+                    
                 }
                 field(UserId; Rec.UserId)
                 {
@@ -51,6 +52,7 @@ page 50153 "Record Header Page"
                     ApplicationArea = All;
 
                 }
+                
 
             }
         }
@@ -60,10 +62,22 @@ page 50153 "Record Header Page"
     {
         area(Processing)
         {
+            action(methodOverload)
+            {
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+
+                trigger OnAction()
+                var
+                    codeU: Codeunit Call;
+                begin
+                    codeU.methodOverloading();
+                end;
+            }
 
         }
     }
-
-    var
-        myInt: Integer;
+ 
 }

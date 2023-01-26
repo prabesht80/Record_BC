@@ -10,6 +10,28 @@ codeunit 50155 Call
 
     end;
 
+    procedure methodOverloading()
+    var
+        posHead: Record "Posted Record Header";
+        changed: Code[10];
+    begin
+        overload1(posHead."Vendor Name", changed);
+        Message('%1', changed);
+        overload2(posHead."No. of Ticket Bought");
+    end;
+
+    local procedure overload1(Name: text[50]; var changed: code[10]): text
+    begin
+        // Message('Name: %1', Name);
+        changed := 'Prabesh';
+        exit(changed);
+    end;
+
+    local procedure overload2(Ticket: Integer)
+    begin
+        Message('Ticket : %1', Ticket);
+    end;
+
 
     //notification on open page
     [EventSubscriber(ObjectType::page, page::"Record Header Card", 'OnOpenPageEvent', '', false, false)]
@@ -41,29 +63,35 @@ codeunit 50155 Call
         postedRecordHeader: Record "Posted Record Header";
         GLEntry: Record "G/L Entry";
     begin
-        postedRecordHeader.Reset();
-        postedRecordHeader.SetRange("No.", Id);
-        if postedRecordHeader.Findset() then
-            repeat
+        if Confirm('Do you want to post to Customer Ledger and General Ledger?', false) then begin
+            Message('posting');
+            postedRecordHeader.Reset();
+            postedRecordHeader.SetRange("No.", Id);
+            if postedRecordHeader.Findset() then
+                repeat
 
-                CusLed.init();
-                if CusLed.FindLast() then
-                    CusLed."Entry No." += 1
-                else
-                    CusLed."Entry No." := 1;
-                CusLed."Document No." := postedRecordHeader."No.";
-                CusLed."Posting Date" := postedRecordHeader."Posting Date";
-                CusLed."Customer No." := postedRecordHeader."Vendor Name";
-                CusLed.Insert();
-                GLEntry.SetRange("Bal. Account No.", CusLed."Bal. Account No.");
-                if GLEntry.FindLast() then
-                    GLEntry."Entry No." += 1
-                else
-                    GLEntry."Entry No." := 1;
-                GLEntry.RecordNumber := CusLed."Document No.";
-                GLEntry.Insert();
-            // Message('Posted to customer ledger');
-            until postedRecordHeader.Next() = 0;
+                    CusLed.init();
+                    if CusLed.FindLast() then
+                        CusLed."Entry No." += 1
+                    else
+                        CusLed."Entry No." := 1;
+                    CusLed."Document No." := postedRecordHeader."No.";
+                    CusLed."Posting Date" := postedRecordHeader."Posting Date";
+                    CusLed."Customer No." := postedRecordHeader."Vendor Name";
+                    CusLed.Insert();
+                    GLEntry.SetRange("Bal. Account No.", CusLed."Bal. Account No.");
+                    if GLEntry.FindLast() then
+                        GLEntry."Entry No." += 1
+                    else
+                        GLEntry."Entry No." := 1;
+                    GLEntry.RecordNumber := CusLed."Document No.";
+                    GLEntry.Insert();
+                // Message('Posted to customer ledger');
+                until postedRecordHeader.Next() = 0;
+            Message('posted');
+        end
+        else
+            Message('Not Posted');
     end;
 
     //tax calculatioon
