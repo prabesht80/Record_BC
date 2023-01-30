@@ -5,7 +5,7 @@ page 50153 "Record Header Page"
     UsageCategory = Administration;
     SourceTable = "Record Header";
     CardPageId = "Record Header Card";
-    // Editable = false;
+    Editable = false;
 
     layout
     {
@@ -20,7 +20,7 @@ page 50153 "Record Header Page"
                 field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = All;
-                    
+
                 }
                 field(UserId; Rec.UserId)
                 {
@@ -52,7 +52,13 @@ page 50153 "Record Header Page"
                     ApplicationArea = All;
 
                 }
-                
+                field(Name; Rec.Name)
+                {
+                    ApplicationArea = All;
+
+
+                }
+
 
             }
         }
@@ -79,5 +85,5 @@ page 50153 "Record Header Page"
 
         }
     }
- 
+
 }

@@ -46,8 +46,19 @@ page 50160 "Posted Record Line Page"
                     ApplicationArea = All;
 
                 }
+                field(PosDate; Rec.PosDate)
+                {
+                    ApplicationArea = All;
+
+                }
+                // field(ExchangeRate; ExchangeRate)
+                // {
+                //     ApplicationArea = All;
+                //     DecimalPlaces = 0 : 5;
+
+                // }
             }
-           
+
         }
     }
 
@@ -67,6 +78,17 @@ page 50160 "Posted Record Line Page"
         }
     }
 
-    var
-        myInt: Integer;
+    // trigger OnAfterGetRecord()
+    // begin
+    //     CurrExcRate.Reset();
+    //     CurrExcRate.SetRange("Currency Code", 'NPR');
+    //     CurrExcRate.SetRange("Starting Date", Rec.PosDate);
+    //     if CurrExcRate.FindFirst() then
+    //         ExchangeRate := CurrExcRate."Exchange Rate Amount";
+    // end;
+
+    // var
+
+    //     CurrExcRate: Record "Currency Exchange Rate";
+    //     ExchangeRate: Decimal;
 }

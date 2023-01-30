@@ -30,6 +30,17 @@ page 50158 "Posted Record Header Page"
                 field(User; Rec.User)
                 {
                     ApplicationArea = All;
+                    DrillDown = true;
+                    // DrillDownPageId = 50160;
+                    trigger OnDrillDown()
+                    var
+                        Recline: Record "Posted Record Line";
+                    begin
+                        Recline.Reset();
+                        Recline.SetFilter("Doc No.", '%1', Rec."No.");
+                        if Recline.FindFirst() then
+                            Page.Run(50160, Recline);
+                    end;
                 }
                 field("Vendor Name"; Rec."Vendor Name")
                 {
@@ -61,30 +72,9 @@ page 50158 "Posted Record Header Page"
                     ApplicationArea = All;
                     DrillDown = true;
                 }
-
             }
+        } 
 
         }
-
-    }
-    actions
-    {
-        area(Processing)
-        {
-            action(ActionName)
-            {
-                ApplicationArea = All;
-
-                trigger OnAction()
-                begin
-
-                end;
-            }
-
-        }
-    }
-
-
-
-
+           
 }

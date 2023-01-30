@@ -23,6 +23,17 @@ page 50162 "Posted Record Header Card"
                 field(User; Rec.User)
                 {
                     ApplicationArea = All;
+                    DrillDown = true;
+                    DrillDownPageId = 50160;
+                    trigger OnDrillDown()
+                    var
+                        Recline: Record "Posted Record Line";
+                    begin
+                        Recline.Reset();
+                        Recline.SetFilter("Doc No.", '%1', Rec."No.");
+                        if Recline.FindFirst() then
+                            Page.Run(50160, Recline);
+                    end;
                 }
                 field(UserId; Rec.UserId)
                 {
@@ -106,6 +117,7 @@ page 50162 "Posted Record Header Card"
                         Report.run(Report::Bill, true, true, PostedHeader);
                 end;
             }
+
             action("Billing")
             {
                 ApplicationArea = All;
@@ -167,15 +179,28 @@ page 50162 "Posted Record Header Card"
                 PromotedCategory = Process;
                 PromotedIsBig = true;
 
-
                 trigger OnAction()
                 var
                     codeU: Codeunit Call;
-
                 begin
                     codeU.insertIntoLineLedgerEntry(Rec."No.");
                 end;
+            }
 
+            action(duedate)
+            {
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+
+                trigger OnAction()
+                var
+                    c: date;
+                begin
+                    c := calcdate('<5M-5D>', Rec."Posting Date");
+                    Message('Duedate: %1', c);
+                end;
             }
         }
     }

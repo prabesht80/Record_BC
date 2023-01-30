@@ -84,10 +84,10 @@ table 50150 "Record Header"
         field(10; UserId; Code[20])
         {
             DataClassification = ToBeClassified;
-            trigger OnLookup()
-            begin
-                Message('you can choose random name');
-            end;
+            // trigger OnLookup()
+            // begin
+            //     Message('you can choose random name');
+            // end;
         }
 
         field(12; Delete; Boolean)
@@ -100,7 +100,11 @@ table 50150 "Record Header"
             DataClassification = ToBeClassified;
 
         }
+        field(14; Name; text[10])
+        {
+            DataClassification = ToBeClassified;
 
+        }
 
     }
 
@@ -126,6 +130,7 @@ table 50150 "Record Header"
 
         "Posting Date" := Today;
         "Time" := system.Time;
+        "UserId" := 'Open';
     end;
 
     var

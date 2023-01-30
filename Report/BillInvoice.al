@@ -55,12 +55,27 @@ report 50158 Bill
 
                 }
                 column(Total_Price; "Total Price") { }
+                column(PosDate; PosDate) { }
+
+                column(ExchangeRate; ExchangeRate) { }
+
+
+                trigger OnAfterGetRecord()
+                begin
+                    CurrExcRate.Reset();
+                    CurrExcRate.SetRange("Currency Code", 'NPR');
+                    CurrExcRate.SetRange("Starting Date", "Posted Record Line".PosDate);
+                    if CurrExcRate.FindFirst() then
+                        ExchangeRate := CurrExcRate."Exchange Rate Amount";
+                end;
 
             }
-
-
         }
     }
 
+    var
+
+        CurrExcRate: Record "Currency Exchange Rate";
+        ExchangeRate: Decimal;
 
 }

@@ -62,12 +62,10 @@ table 50151 "Record Line"
         {
             DataClassification = ToBeClassified;
         }
-        // field(9; GrandTotal; Decimal)
-        // {
-        //     FieldClass = FlowField;
-        //     CalcFormula = sum("Record Line"."Total Price");
-
-        // }
+        field(9; PosDate; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

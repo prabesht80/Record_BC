@@ -61,7 +61,6 @@ page 50167 NewRecordPage
                         if posLine.FindFirst() then
                             itemNo := posLine."Item No.";
                     end;
-
                 end;
             }
         }

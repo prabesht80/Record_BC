@@ -1,9 +1,7 @@
 codeunit 50155 Call
 {
-
     //existing table ma change garda permission necessary
     Permissions = tabledata "Cust. Ledger Entry" = rmi, tabledata "G/L Entry" = rmi;
-
 
     trigger OnRun()
     begin

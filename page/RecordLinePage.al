@@ -40,7 +40,11 @@ page 50154 "Record Line Page"
                     ApplicationArea = All;
 
                 }
+                field(PosDate; Rec.PosDate)
+                {
+                    ApplicationArea = All;
 
+                }
 
             }
         }

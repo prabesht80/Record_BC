@@ -46,6 +46,7 @@ table 50158 "Posted Record Header"
         field(10; User; Code[20])
         {
             DataClassification = ToBeClassified;
+
         }
 
         field(12; Delete; Boolean)
@@ -62,6 +63,7 @@ table 50158 "Posted Record Header"
             FieldClass = FlowField;
             CalcFormula = count("Posted Record Header" where(Delete = const(false)));
         }
+
 
     }
 

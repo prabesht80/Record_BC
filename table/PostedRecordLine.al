@@ -40,6 +40,10 @@ table 50156 "Posted Record Line"
         {
             DataClassification = ToBeClassified;
         }
+        field(9; PosDate; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys
@@ -49,5 +53,6 @@ table 50156 "Posted Record Line"
             Clustered = true;
         }
     }
+
 
 }
