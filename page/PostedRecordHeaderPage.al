@@ -6,15 +6,12 @@ page 50158 "Posted Record Header Page"
     SourceTable = "Posted Record Header";
     CardPageId = "Posted Record Header Card";
 
-
-
     layout
     {
         area(Content)
         {
             repeater(General)
             {
-
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
@@ -53,7 +50,6 @@ page 50158 "Posted Record Header Page"
                 field("Total Amount After Tax"; Rec."Total Amount After Tax")
                 {
                     ApplicationArea = All;
-                    DrillDown = true;
                 }
                 field(Time; Rec.Time)
                 {
@@ -70,11 +66,10 @@ page 50158 "Posted Record Header Page"
                 field("No. of Ticket Bought"; Rec."No. of Ticket Bought")
                 {
                     ApplicationArea = All;
-                    DrillDown = true;
                 }
             }
-        } 
-
         }
-           
+
+    }
+
 }

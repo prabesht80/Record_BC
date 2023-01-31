@@ -24,7 +24,7 @@ page 50162 "Posted Record Header Card"
                 {
                     ApplicationArea = All;
                     DrillDown = true;
-                    DrillDownPageId = 50160;
+                    // DrillDownPageId = 50160;
                     trigger OnDrillDown()
                     var
                         Recline: Record "Posted Record Line";
@@ -115,6 +115,24 @@ page 50162 "Posted Record Header Card"
                     PostedHeader.setRange("No.", Rec."No.");
                     if PostedHeader.FindFirst() then
                         Report.run(Report::Bill, true, true, PostedHeader);
+                end;
+            }
+            action("cusQuery")
+            {
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Print;
+
+                trigger OnAction()
+                var
+                    PostedHeader: Record "Posted Record Header";
+                begin
+                    // PostedHeader.Reset();
+                    // PostedHeader.setRange("No.", Rec."No.");
+                    // if PostedHeader.FindFirst() then
+                    Report.run(Report::CusReport);
                 end;
             }
 

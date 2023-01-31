@@ -664,20 +664,7 @@ End Function
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
   <DataSets>
     <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="No_">
-          <DataField>No_</DataField>
-        </Field>
-        <Field Name="Posting_Date">
-          <DataField>Posting_Date</DataField>
-        </Field>
-        <Field Name="UserId">
-          <DataField>UserId</DataField>
-        </Field>
-        <Field Name="Vendor_Name">
-          <DataField>Vendor_Name</DataField>
-        </Field>
-      </Fields>
+      <Fields />
       <Query>
         <DataSourceName>DataSource</DataSourceName>
         <CommandText />

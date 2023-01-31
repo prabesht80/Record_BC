@@ -15,7 +15,6 @@ report 50185 ReportUpdate
             var
                 postedBillHdr: Record "Posted Record Header";
                 Cus: Record Customer;
-
             begin
                 if postedBill = '' then
                     Error('enter the doc you want to update');
@@ -32,27 +31,7 @@ report 50185 ReportUpdate
                 Message('done');
             end;
         }
-        dataitem("Posted Record Header"; "Posted Record Header")
-        {
-            column(No_; "No.")
-            {
 
-            }
-            column(Posting_Date; "Posting Date")
-            {
-
-            }
-
-            column(UserId; UserId)
-            {
-
-            }
-            column(Vendor_Name; "Vendor Name")
-            {
-
-            }
-
-        }
     }
 
     requestpage
